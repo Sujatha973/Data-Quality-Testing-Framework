@@ -260,7 +260,7 @@ jobs:
 
         if: always()
 
-        run: cd great_expectations && great_expectations --v3-api docs build --no-view
+        run: cd great_expectations && great_expectations docs build --no-view
  
       - name: Upload GE evidence
 
@@ -368,7 +368,7 @@ jobs:
 
           mkdir -p reports/junit
 
-          behave features/ --junit --junit-directory reports/junit \
+          python3 -m behave features/ --junit --junit-directory reports/junit \
 
             -f json -o reports/behave_results_ci.json -f pretty
  
