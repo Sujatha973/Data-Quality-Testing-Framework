@@ -98,12 +98,6 @@ jobs:
 
         ports: ["5432:5432"]
 
-        options: >-
-
-          --health-cmd pg_isready
-
-          --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
 
       - uses: actions/checkout@v4
@@ -123,6 +117,30 @@ jobs:
       - name: Install postgresql-client
 
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
+ 
+      - name: Wait for Postgres to accept connections
+
+        run: |
+
+          for i in $(seq 1 30); do
+
+            if PGPASSWORD=dq_pass pg_isready -h localhost -p 5432 -U dq_user -d dq_db; then
+
+              echo "Postgres is ready."
+
+              exit 0
+
+            fi
+
+            echo "Waiting for Postgres... ($i/30)"
+
+            sleep 2
+
+          done
+
+          echo "Postgres did not become ready in time."
+
+          exit 1
  
       - name: Initialize schema and load data
 
@@ -182,12 +200,6 @@ jobs:
 
         ports: ["5432:5432"]
 
-        options: >-
-
-          --health-cmd pg_isready
-
-          --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
 
       - uses: actions/checkout@v4
@@ -207,6 +219,30 @@ jobs:
       - name: Install postgresql-client
 
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
+ 
+      - name: Wait for Postgres to accept connections
+
+        run: |
+
+          for i in $(seq 1 30); do
+
+            if PGPASSWORD=dq_pass pg_isready -h localhost -p 5432 -U dq_user -d dq_db; then
+
+              echo "Postgres is ready."
+
+              exit 0
+
+            fi
+
+            echo "Waiting for Postgres... ($i/30)"
+
+            sleep 2
+
+          done
+
+          echo "Postgres did not become ready in time."
+
+          exit 1
  
       - name: Initialize schema and load data
 
@@ -274,12 +310,6 @@ jobs:
 
         ports: ["5432:5432"]
 
-        options: >-
-
-          --health-cmd pg_isready
-
-          --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
 
       - uses: actions/checkout@v4
@@ -299,6 +329,30 @@ jobs:
       - name: Install postgresql-client
 
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
+ 
+      - name: Wait for Postgres to accept connections
+
+        run: |
+
+          for i in $(seq 1 30); do
+
+            if PGPASSWORD=dq_pass pg_isready -h localhost -p 5432 -U dq_user -d dq_db; then
+
+              echo "Postgres is ready."
+
+              exit 0
+
+            fi
+
+            echo "Waiting for Postgres... ($i/30)"
+
+            sleep 2
+
+          done
+
+          echo "Postgres did not become ready in time."
+
+          exit 1
  
       - name: Initialize schema and load data
 
@@ -411,3 +465,4 @@ jobs:
           echo "See the dq-evidence artifact for full details."
 
           exit 1
+ 
