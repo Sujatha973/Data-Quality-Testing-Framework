@@ -148,10 +148,6 @@ jobs:
       - name: Run Great Expectations checkpoints
         run: python3 scripts/run_ge_checkpoints.py
 
-      - name: Build Data Docs
-        if: always()
-        run: cd great_expectations && great_expectations docs build --no-view
-
       - name: Upload GE evidence
         if: always()
         uses: actions/upload-artifact@v4
