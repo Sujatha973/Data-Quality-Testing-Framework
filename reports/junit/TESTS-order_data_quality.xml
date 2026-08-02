@@ -1,92 +1,110 @@
-<testsuite name="order_data_quality.Order table data quality" tests="5" errors="0" failures="5" skipped="0" time="0.128534" timestamp="2026-08-02T16:18:38.053262" hostname="Sujatha"><testcase classname="order_data_quality.Order table data quality" name="Order primary key is unique and never null" status="failed" time="0.024188"><failure type="AssertionError" message="Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
-<![CDATA[
-Failing step: Given the "orders" table is loaded from "raw.orders" ... failed in 0.024s
-Location: features/order_data_quality.feature:7
-Assertion Failed: Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+<testsuite name="order_data_quality.Order table data quality" tests="5" errors="0" failures="0" skipped="0" time="9.89815" timestamp="2026-08-02T19:07:13.637962" hostname="Sujatha"><testcase classname="order_data_quality.Order table data quality" name="Order primary key is unique and never null" status="passed" time="0.435979"><system-out>
 <![CDATA[
 @scenario.begin
 
   @great_expectations @critical
   Scenario: Order primary key is unique and never null
-    Given the "orders" table is loaded from "raw.orders" ... failed in 0.024s
-    When I run the Great Expectations checkpoint "orders_checkpoint" ... skipped in 0.000s
-    Then the expectation "expect_column_values_to_be_unique" on column "order_id" should pass ... skipped in 0.000s
-    And the expectation "expect_column_values_to_not_be_null" on column "order_id" should pass ... skipped in 0.000s
+    Given the "orders" table is loaded from "raw.orders" ... passed in 0.026s
+    When I run the Great Expectations checkpoint "orders_checkpoint" ... passed in 0.410s
+    Then the expectation "expect_column_values_to_be_unique" on column "order_id" should pass ... passed in 0.000s
+    And the expectation "expect_column_values_to_not_be_null" on column "order_id" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.orders has 800 rows.
+[ge_steps] Checkpoint 'orders_checkpoint' success=True. Evidence -> C:\Users\gsuji\Downloads\Data-Quality-Testing-Framework\reports\orders_checkpoint_result.json
+
 ]]>
-</system-out></testcase><testcase classname="order_data_quality.Order table data quality" name="Order amounts are never negative" status="failed" time="0.023559"><failure type="AssertionError" message="Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
+</system-out><system-err>
 <![CDATA[
-Failing step: Given the "orders" table is loaded from "raw.orders" ... failed in 0.024s
-Location: features/order_data_quality.feature:7
-Assertion Failed: Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+Captured stderr:
+Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 104.21it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 208.42it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 108.65it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 293.24it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 228.23it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 701.38it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 520.63it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 609.52it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 609.52it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 609.52it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 609.52it/s]
+
+]]>
+</system-err></testcase><testcase classname="order_data_quality.Order table data quality" name="Order amounts are never negative" status="passed" time="0.448149"><system-out>
 <![CDATA[
 @scenario.begin
 
   @great_expectations @critical
   Scenario: Order amounts are never negative
-    Given the "orders" table is loaded from "raw.orders" ... failed in 0.024s
-    When I run the Great Expectations checkpoint "orders_checkpoint" ... skipped in 0.000s
-    Then the expectation "expect_column_values_to_be_between" on column "amount" should pass ... skipped in 0.000s
+    Given the "orders" table is loaded from "raw.orders" ... passed in 0.037s
+    When I run the Great Expectations checkpoint "orders_checkpoint" ... passed in 0.411s
+    Then the expectation "expect_column_values_to_be_between" on column "amount" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.orders has 800 rows.
+[ge_steps] Checkpoint 'orders_checkpoint' success=True. Evidence -> C:\Users\gsuji\Downloads\Data-Quality-Testing-Framework\reports\orders_checkpoint_result.json
+
 ]]>
-</system-out></testcase><testcase classname="order_data_quality.Order table data quality" name="Order status is always a known lifecycle value" status="failed" time="0.033528"><failure type="AssertionError" message="Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
+</system-out><system-err>
 <![CDATA[
-Failing step: Given the "orders" table is loaded from "raw.orders" ... failed in 0.034s
-Location: features/order_data_quality.feature:7
-Assertion Failed: Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+Captured stderr:
+Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 99.94it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 199.89it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 114.26it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 342.78it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 238.91it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 626.30it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 529.69it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 600.62it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 542.74it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 542.74it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 542.74it/s]
+
+]]>
+</system-err></testcase><testcase classname="order_data_quality.Order table data quality" name="Order status is always a known lifecycle value" status="passed" time="0.427787"><system-out>
 <![CDATA[
 @scenario.begin
 
   @great_expectations
   Scenario: Order status is always a known lifecycle value
-    Given the "orders" table is loaded from "raw.orders" ... failed in 0.034s
-    When I run the Great Expectations checkpoint "orders_checkpoint" ... skipped in 0.000s
-    Then the expectation "expect_column_values_to_be_in_set" on column "status" should pass ... skipped in 0.000s
+    Given the "orders" table is loaded from "raw.orders" ... passed in 0.008s
+    When I run the Great Expectations checkpoint "orders_checkpoint" ... passed in 0.420s
+    Then the expectation "expect_column_values_to_be_in_set" on column "status" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.orders has 800 rows.
+[ge_steps] Checkpoint 'orders_checkpoint' success=True. Evidence -> C:\Users\gsuji\Downloads\Data-Quality-Testing-Framework\reports\orders_checkpoint_result.json
+
 ]]>
-</system-out></testcase><testcase classname="order_data_quality.Order table data quality" name="Every order references a real customer" status="failed" time="0.02309"><failure type="AssertionError" message="Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
+</system-out><system-err>
 <![CDATA[
-Failing step: Given the "orders" table is loaded from "raw.orders" ... failed in 0.023s
-Location: features/order_data_quality.feature:7
-Assertion Failed: Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+Captured stderr:
+Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 183.94it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 367.88it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 135.16it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 405.48it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 274.04it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 557.71it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 498.75it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 583.91it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 535.16it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 535.16it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 535.16it/s]
+
+]]>
+</system-err></testcase><testcase classname="order_data_quality.Order table data quality" name="Every order references a real customer" status="passed" time="4.289167"><system-out>
 <![CDATA[
 @scenario.begin
 
   @dbt @critical @TC-DQ-002
   Scenario: Every order references a real customer
-    Given the "orders" table is loaded from "raw.orders" ... failed in 0.023s
-    When I run dbt tests for model "stg_orders" ... skipped in 0.000s
-    Then the dbt test "relationships" on "stg_orders.customer_id" should pass ... skipped in 0.000s
+    Given the "orders" table is loaded from "raw.orders" ... passed in 0.028s
+    When I run dbt tests for model "stg_orders" ... passed in 4.261s
+    Then the dbt test "relationships" on "stg_orders.customer_id" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.orders has 800 rows.
+[dbt_steps] `dbt test --select stg_orders` exited 0
+
 ]]>
-</system-out></testcase><testcase classname="order_data_quality.Order table data quality" name="dbt enforces order table constraints" status="failed" time="0.024168"><failure type="AssertionError" message="Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
-<![CDATA[
-Failing step: Given the "orders" table is loaded from "raw.orders" ... failed in 0.024s
-Location: features/order_data_quality.feature:7
-Assertion Failed: Expected raw.orders to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+</system-out></testcase><testcase classname="order_data_quality.Order table data quality" name="dbt enforces order table constraints" status="passed" time="4.297068"><system-out>
 <![CDATA[
 @scenario.begin
 
   @dbt
   Scenario: dbt enforces order table constraints
-    Given the "orders" table is loaded from "raw.orders" ... failed in 0.024s
-    When I run dbt tests for model "stg_orders" ... skipped in 0.000s
-    Then all dbt tests for "stg_orders" should pass ... skipped in 0.000s
+    Given the "orders" table is loaded from "raw.orders" ... passed in 0.033s
+    When I run dbt tests for model "stg_orders" ... passed in 4.263s
+    Then all dbt tests for "stg_orders" should pass ... passed in 0.001s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.orders has 800 rows.
+[dbt_steps] `dbt test --select stg_orders` exited 0
+
 ]]>
 </system-out></testcase></testsuite>

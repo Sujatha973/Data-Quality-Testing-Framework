@@ -1,0 +1,339 @@
+{
+  "run_id": {
+    "run_name": "20260802-180659-customers",
+    "run_time": "2026-08-02T19:06:59.019818+01:00"
+  },
+  "run_results": {
+    "ValidationResultIdentifier::customers_suite/20260802-180659-customers/20260802T180659.019818Z/9cb795e40a9f07dc75a443a7ae5d8244": {
+      "validation_result": {
+        "success": true,
+        "results": [
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_table_row_count_to_be_between",
+              "kwargs": {
+                "min_value": 1,
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Table should never be empty."
+              }
+            },
+            "result": {
+              "observed_value": 200
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_not_be_null",
+              "kwargs": {
+                "column": "customer_id",
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Primary key must never be null."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_be_unique",
+              "kwargs": {
+                "column": "customer_id",
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Primary key must be unique."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "missing_count": 0,
+              "missing_percent": 0.0,
+              "unexpected_percent_total": 0.0,
+              "unexpected_percent_nonmissing": 0.0,
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_not_be_null",
+              "kwargs": {
+                "column": "full_name",
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Customer name should always be captured."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_not_be_null",
+              "kwargs": {
+                "column": "email",
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Email is required for communication."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_match_regex",
+              "kwargs": {
+                "column": "email",
+                "regex": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+                "mostly": 0.97,
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Email must be well-formed; allow small tolerance for known bad records under investigation."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "missing_count": 0,
+              "missing_percent": 0.0,
+              "unexpected_percent_total": 0.0,
+              "unexpected_percent_nonmissing": 0.0,
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_be_in_set",
+              "kwargs": {
+                "column": "country",
+                "value_set": [
+                  "USA",
+                  "India",
+                  "UK",
+                  "Germany",
+                  "Canada",
+                  "Australia"
+                ],
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Country must be one of the supported markets."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "missing_count": 0,
+              "missing_percent": 0.0,
+              "unexpected_percent_total": 0.0,
+              "unexpected_percent_nonmissing": 0.0,
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          },
+          {
+            "success": true,
+            "expectation_config": {
+              "expectation_type": "expect_column_values_to_not_be_null",
+              "kwargs": {
+                "column": "signup_date",
+                "batch_id": "9cb795e40a9f07dc75a443a7ae5d8244"
+              },
+              "meta": {
+                "notes": "Signup date should always be recorded."
+              }
+            },
+            "result": {
+              "element_count": 200,
+              "unexpected_count": 0,
+              "unexpected_percent": 0.0,
+              "partial_unexpected_list": [],
+              "partial_unexpected_counts": []
+            },
+            "meta": {},
+            "exception_info": {
+              "raised_exception": false,
+              "exception_traceback": null,
+              "exception_message": null
+            }
+          }
+        ],
+        "evaluation_parameters": {},
+        "statistics": {
+          "evaluated_expectations": 8,
+          "successful_expectations": 8,
+          "unsuccessful_expectations": 0,
+          "success_percent": 100.0
+        },
+        "meta": {
+          "great_expectations_version": "0.18.19",
+          "expectation_suite_name": "customers_suite",
+          "run_id": {
+            "run_name": "20260802-180659-customers",
+            "run_time": "2026-08-02T19:06:59.019818+01:00"
+          },
+          "batch_spec": {
+            "data_asset_name": "customers",
+            "table_name": "customers",
+            "batch_identifiers": {},
+            "class_name": "Asset",
+            "module_name": "great_expectations.datasource.data_connector.asset",
+            "schema_name": "raw",
+            "sorters": {},
+            "type": null
+          },
+          "batch_markers": {
+            "ge_load_time": "20260802T180659.021820Z"
+          },
+          "active_batch_definition": {
+            "datasource_name": "dq_postgres_datasource",
+            "data_connector_name": "default_configured_data_connector",
+            "data_asset_name": "customers",
+            "batch_identifiers": {}
+          },
+          "validation_time": "20260802T180659.031532Z",
+          "checkpoint_name": "customers_checkpoint",
+          "validation_id": null,
+          "checkpoint_id": null
+        }
+      },
+      "actions_results": {
+        "store_validation_result": {
+          "class": "StoreValidationResultAction"
+        },
+        "update_data_docs": {
+          "local_site": "file://C:\\Users\\gsuji\\Downloads\\Data-Quality-Testing-Framework\\great_expectations\\uncommitted/data_docs/local_site/validations%5Ccustomers_suite%5C20260802-180659-customers%5C20260802T180659.019818Z%5C9cb795e40a9f07dc75a443a7ae5d8244.html",
+          "class": "UpdateDataDocsAction"
+        }
+      }
+    }
+  },
+  "checkpoint_config": {
+    "default_validation_id": null,
+    "config_version": 1.0,
+    "slack_webhook": null,
+    "template_name": null,
+    "evaluation_parameters": {},
+    "action_list": [
+      {
+        "name": "store_validation_result",
+        "action": {
+          "class_name": "StoreValidationResultAction"
+        }
+      },
+      {
+        "name": "update_data_docs",
+        "action": {
+          "class_name": "UpdateDataDocsAction"
+        }
+      }
+    ],
+    "module_name": "great_expectations.checkpoint",
+    "validations": [
+      {
+        "name": null,
+        "id": null,
+        "expectation_suite_ge_cloud_id": null,
+        "expectation_suite_name": "customers_suite",
+        "batch_request": {
+          "datasource_name": "dq_postgres_datasource",
+          "data_connector_name": "default_configured_data_connector",
+          "data_asset_name": "customers",
+          "data_connector_query": {
+            "index": -1
+          }
+        }
+      }
+    ],
+    "profilers": [],
+    "notify_on": null,
+    "class_name": "Checkpoint",
+    "runtime_configuration": {},
+    "run_name_template": "%Y%m%d-%H%M%S-customers",
+    "site_names": null,
+    "batch_request": {},
+    "ge_cloud_id": null,
+    "notify_with": null,
+    "name": "customers_checkpoint",
+    "expectation_suite_ge_cloud_id": null,
+    "expectation_suite_name": null
+  },
+  "success": true
+}

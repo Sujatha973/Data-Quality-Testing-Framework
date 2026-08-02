@@ -1,74 +1,92 @@
-<testsuite name="customer_data_quality.Customer table data quality" tests="4" errors="0" failures="4" skipped="0" time="0.136656" timestamp="2026-08-02T16:18:37.903736" hostname="Sujatha"><testcase classname="customer_data_quality.Customer table data quality" name="Customer primary key is unique and never null" status="failed" time="0.033339"><failure type="AssertionError" message="Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
-<![CDATA[
-Failing step: Given the "customers" table is loaded from "raw.customers" ... failed in 0.033s
-Location: features/customer_data_quality.feature:7
-Assertion Failed: Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+<testsuite name="customer_data_quality.Customer table data quality" tests="4" errors="0" failures="0" skipped="0" time="5.741124" timestamp="2026-08-02T19:07:03.731892" hostname="Sujatha"><testcase classname="customer_data_quality.Customer table data quality" name="Customer primary key is unique and never null" status="passed" time="0.55774"><system-out>
 <![CDATA[
 @scenario.begin
 
   @great_expectations @critical
   Scenario: Customer primary key is unique and never null
-    Given the "customers" table is loaded from "raw.customers" ... failed in 0.033s
-    When I run the Great Expectations checkpoint "customers_checkpoint" ... skipped in 0.000s
-    Then the expectation "expect_column_values_to_be_unique" on column "customer_id" should pass ... skipped in 0.000s
-    And the expectation "expect_column_values_to_not_be_null" on column "customer_id" should pass ... skipped in 0.000s
+    Given the "customers" table is loaded from "raw.customers" ... passed in 0.025s
+    When I run the Great Expectations checkpoint "customers_checkpoint" ... passed in 0.532s
+    Then the expectation "expect_column_values_to_be_unique" on column "customer_id" should pass ... passed in 0.000s
+    And the expectation "expect_column_values_to_not_be_null" on column "customer_id" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.customers has 200 rows.
+[ge_steps] Checkpoint 'customers_checkpoint' success=True. Evidence -> C:\Users\gsuji\Downloads\Data-Quality-Testing-Framework\reports\customers_checkpoint_result.json
+
 ]]>
-</system-out></testcase><testcase classname="customer_data_quality.Customer table data quality" name="Customer email addresses are well-formed" status="failed" time="0.031849"><failure type="AssertionError" message="Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
+</system-out><system-err>
 <![CDATA[
-Failing step: Given the "customers" table is loaded from "raw.customers" ... failed in 0.032s
-Location: features/customer_data_quality.feature:7
-Assertion Failed: Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+Captured stderr:
+Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 192.02it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 66.10it/s] Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 132.21it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 85.95it/s] Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 247.19it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 205.20it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 537.08it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 469.21it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 549.32it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 549.32it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 549.32it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 549.32it/s]
+
+]]>
+</system-err></testcase><testcase classname="customer_data_quality.Customer table data quality" name="Customer email addresses are well-formed" status="passed" time="0.442073"><system-out>
 <![CDATA[
 @scenario.begin
 
   @great_expectations @TC-DQ-001
   Scenario: Customer email addresses are well-formed
-    Given the "customers" table is loaded from "raw.customers" ... failed in 0.032s
-    When I run the Great Expectations checkpoint "customers_checkpoint" ... skipped in 0.000s
-    Then the expectation "expect_column_values_to_match_regex" on column "email" should pass ... skipped in 0.000s
+    Given the "customers" table is loaded from "raw.customers" ... passed in 0.012s
+    When I run the Great Expectations checkpoint "customers_checkpoint" ... passed in 0.430s
+    Then the expectation "expect_column_values_to_match_regex" on column "email" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.customers has 200 rows.
+[ge_steps] Checkpoint 'customers_checkpoint' success=True. Evidence -> C:\Users\gsuji\Downloads\Data-Quality-Testing-Framework\reports\customers_checkpoint_result.json
+
 ]]>
-</system-out></testcase><testcase classname="customer_data_quality.Customer table data quality" name="Customer country values are within the supported market list" status="failed" time="0.03112"><failure type="AssertionError" message="Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
+</system-out><system-err>
 <![CDATA[
-Failing step: Given the "customers" table is loaded from "raw.customers" ... failed in 0.031s
-Location: features/customer_data_quality.feature:7
-Assertion Failed: Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+Captured stderr:
+Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 138.80it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 277.60it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 122.81it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 345.95it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 252.55it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 527.51it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 495.65it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 543.27it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 516.65it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 516.65it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 516.65it/s]
+
+]]>
+</system-err></testcase><testcase classname="customer_data_quality.Customer table data quality" name="Customer country values are within the supported market list" status="passed" time="0.425983"><system-out>
 <![CDATA[
 @scenario.begin
 
   @great_expectations
   Scenario: Customer country values are within the supported market list
-    Given the "customers" table is loaded from "raw.customers" ... failed in 0.031s
-    When I run the Great Expectations checkpoint "customers_checkpoint" ... skipped in 0.000s
-    Then the expectation "expect_column_values_to_be_in_set" on column "country" should pass ... skipped in 0.000s
+    Given the "customers" table is loaded from "raw.customers" ... passed in 0.026s
+    When I run the Great Expectations checkpoint "customers_checkpoint" ... passed in 0.400s
+    Then the expectation "expect_column_values_to_be_in_set" on column "country" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.customers has 200 rows.
+[ge_steps] Checkpoint 'customers_checkpoint' success=True. Evidence -> C:\Users\gsuji\Downloads\Data-Quality-Testing-Framework\reports\customers_checkpoint_result.json
+
 ]]>
-</system-out></testcase><testcase classname="customer_data_quality.Customer table data quality" name="dbt enforces customer table constraints" status="failed" time="0.040347"><failure type="AssertionError" message="Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?">
+</system-out><system-err>
 <![CDATA[
-Failing step: Given the "customers" table is loaded from "raw.customers" ... failed in 0.040s
-Location: features/customer_data_quality.feature:7
-Assertion Failed: Expected raw.customers to contain rows before validating it, found 0. Did you run scripts/load_data.py?]]>
-</failure><system-out>
+Captured stderr:
+Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<?, ?it/s]Calculating Metrics:   4%|4         | 2/48 [00:00<00:00, 119.31it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 194.54it/s]Calculating Metrics:   8%|8         | 4/48 [00:00<00:00, 116.83it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 331.10it/s]Calculating Metrics:  25%|##5       | 12/48 [00:00<00:00, 258.09it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 582.70it/s]Calculating Metrics:  85%|########5 | 41/48 [00:00<00:00, 558.63it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 593.57it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 556.65it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 556.65it/s]Calculating Metrics: 100%|##########| 48/48 [00:00<00:00, 556.65it/s]
+
+]]>
+</system-err></testcase><testcase classname="customer_data_quality.Customer table data quality" name="dbt enforces customer table constraints" status="passed" time="4.315328"><system-out>
 <![CDATA[
 @scenario.begin
 
   @dbt @critical
   Scenario: dbt enforces customer table constraints
-    Given the "customers" table is loaded from "raw.customers" ... failed in 0.040s
-    When I run dbt tests for model "stg_customers" ... skipped in 0.000s
-    Then all dbt tests for "stg_customers" should pass ... skipped in 0.000s
+    Given the "customers" table is loaded from "raw.customers" ... passed in 0.022s
+    When I run dbt tests for model "stg_customers" ... passed in 4.294s
+    Then all dbt tests for "stg_customers" should pass ... passed in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
+
+Captured stdout:
+[common_steps] raw.customers has 200 rows.
+[dbt_steps] `dbt test --select stg_customers` exited 0
+
 ]]>
 </system-out></testcase></testsuite>

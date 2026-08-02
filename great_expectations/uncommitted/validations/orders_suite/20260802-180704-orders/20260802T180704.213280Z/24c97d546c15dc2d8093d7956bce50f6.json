@@ -1,0 +1,268 @@
+{
+  "evaluation_parameters": {},
+  "meta": {
+    "active_batch_definition": {
+      "batch_identifiers": {},
+      "data_asset_name": "orders",
+      "data_connector_name": "default_configured_data_connector",
+      "datasource_name": "dq_postgres_datasource"
+    },
+    "batch_markers": {
+      "ge_load_time": "20260802T180704.215280Z"
+    },
+    "batch_spec": {
+      "batch_identifiers": {},
+      "class_name": "Asset",
+      "data_asset_name": "orders",
+      "module_name": "great_expectations.datasource.data_connector.asset",
+      "schema_name": "raw",
+      "sorters": {},
+      "table_name": "orders",
+      "type": null
+    },
+    "checkpoint_id": null,
+    "checkpoint_name": "orders_checkpoint",
+    "expectation_suite_name": "orders_suite",
+    "great_expectations_version": "0.18.19",
+    "run_id": {
+      "run_name": "20260802-180704-orders",
+      "run_time": "2026-08-02T19:07:04.213280+01:00"
+    },
+    "validation_id": null,
+    "validation_time": "20260802T180704.223288Z"
+  },
+  "results": [
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_table_row_count_to_be_between",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "min_value": 1
+        },
+        "meta": {
+          "notes": "Table should never be empty."
+        }
+      },
+      "meta": {},
+      "result": {
+        "observed_value": 800
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "order_id"
+        },
+        "meta": {
+          "notes": "Primary key must never be null."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_unique",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "order_id"
+        },
+        "meta": {
+          "notes": "Primary key must be unique."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "customer_id"
+        },
+        "meta": {
+          "notes": "Every order must reference a customer."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_between",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "amount",
+          "min_value": 0,
+          "strict_min": false
+        },
+        "meta": {
+          "notes": "Order amounts must never be negative."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "status"
+        },
+        "meta": {
+          "notes": "Order status should always be set."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_in_set",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "status",
+          "value_set": [
+            "placed",
+            "shipped",
+            "delivered",
+            "cancelled",
+            "returned"
+          ]
+        },
+        "meta": {
+          "notes": "Status must be one of the known lifecycle values."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "24c97d546c15dc2d8093d7956bce50f6",
+          "column": "order_date"
+        },
+        "meta": {
+          "notes": "Order date should always be recorded."
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 800,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    }
+  ],
+  "statistics": {
+    "evaluated_expectations": 8,
+    "success_percent": 100.0,
+    "successful_expectations": 8,
+    "unsuccessful_expectations": 0
+  },
+  "success": true
+}
