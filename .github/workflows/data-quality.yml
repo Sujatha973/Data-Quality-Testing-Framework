@@ -1,0 +1,413 @@
+name: Data Quality Pipeline
+ 
+on:
+
+  push:
+
+    branches: [main]
+
+  pull_request:
+
+    branches: [main]
+
+  workflow_dispatch: {}
+ 
+env:
+
+  DQ_DB_HOST: localhost
+
+  DQ_DB_PORT: 5432
+
+  DQ_DB_NAME: dq_db
+
+  DQ_DB_USER: dq_user
+
+  DQ_DB_PASSWORD: dq_pass
+ 
+jobs:
+
+  # ---------------------------------------------------------------------
+
+  # Stage 1: Build — install deps, generate sample data, publish it as an
+
+  # artifact so every downstream job uses the exact same dataset.
+
+  # ---------------------------------------------------------------------
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+ 
+      - uses: actions/setup-python@v5
+
+        with:
+
+          python-version: "3.11"
+
+          cache: "pip"
+ 
+      - name: Install Python dependencies
+
+        run: pip install -r requirements.txt
+ 
+      - name: Generate sample data
+
+        run: cd data && python3 generate_sample_data.py
+ 
+      - name: Upload sample data artifact
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: sample-data
+
+          path: data/*.csv
+ 
+  # ---------------------------------------------------------------------
+
+  # Stage 2a: dbt tests — schema-level tests (unique, not_null,
+
+  # relationships, accepted_values) run directly via `dbt test`.
+
+  # ---------------------------------------------------------------------
+
+  dbt-tests:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    services:
+
+      postgres:
+
+        image: postgres:16
+
+        env:
+
+          POSTGRES_USER: dq_user
+
+          POSTGRES_PASSWORD: dq_pass
+
+          POSTGRES_DB: dq_db
+
+        ports: ["5432:5432"]
+
+        options: >-
+
+          --health-cmd "pg_isready -U dq_user -d dq_db"
+
+          --health-interval 5s --health-timeout 5s --health-retries 10
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+
+        with: { python-version: "3.11", cache: "pip" }
+
+      - run: pip install -r requirements.txt
+ 
+      - name: Download sample data
+
+        uses: actions/download-artifact@v4
+
+        with: { name: sample-data, path: data }
+ 
+      - name: Install postgresql-client
+
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+ 
+      - name: Initialize schema and load data
+
+        run: |
+
+          PGPASSWORD=dq_pass psql -h localhost -U dq_user -d dq_db -f db/init.sql
+
+          python3 scripts/load_data.py
+ 
+      - name: Run dbt tests
+
+        run: cd dbt_project && dbt test --profiles-dir .
+ 
+      - name: Upload dbt evidence
+
+        if: always()
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: dbt-results
+
+          path: |
+
+            dbt_project/target/run_results.json
+
+            dbt_project/logs/
+ 
+  # ---------------------------------------------------------------------
+
+  # Stage 2b: Great Expectations tests — column/table-level checkpoints,
+
+  # run independently via the standalone runner script.
+
+  # ---------------------------------------------------------------------
+
+  great-expectations-tests:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    services:
+
+      postgres:
+
+        image: postgres:16
+
+        env:
+
+          POSTGRES_USER: dq_user
+
+          POSTGRES_PASSWORD: dq_pass
+
+          POSTGRES_DB: dq_db
+
+        ports: ["5432:5432"]
+
+        options: >-
+
+          --health-cmd "pg_isready -U dq_user -d dq_db"
+
+          --health-interval 5s --health-timeout 5s --health-retries 10
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+
+        with: { python-version: "3.11", cache: "pip" }
+
+      - run: pip install -r requirements.txt
+ 
+      - name: Download sample data
+
+        uses: actions/download-artifact@v4
+
+        with: { name: sample-data, path: data }
+ 
+      - name: Install postgresql-client
+
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+ 
+      - name: Initialize schema and load data
+
+        run: |
+
+          PGPASSWORD=dq_pass psql -h localhost -U dq_user -d dq_db -f db/init.sql
+
+          python3 scripts/load_data.py
+ 
+      - name: Run Great Expectations checkpoints
+
+        run: python3 scripts/run_ge_checkpoints.py
+ 
+      - name: Build Data Docs
+
+        if: always()
+
+        run: cd great_expectations && great_expectations --v3-api docs build --no-view
+ 
+      - name: Upload GE evidence
+
+        if: always()
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: ge-results
+
+          path: |
+
+            reports/*_result.json
+
+            reports/ge_checkpoints_summary.json
+
+            great_expectations/uncommitted/data_docs/
+ 
+  # ---------------------------------------------------------------------
+
+  # Stage 2c: BDD acceptance tests — the Gherkin layer that exercises both
+
+  # GE and dbt through Behave, giving one unified scenario-level signal.
+
+  # ---------------------------------------------------------------------
+
+  bdd-tests:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    services:
+
+      postgres:
+
+        image: postgres:16
+
+        env:
+
+          POSTGRES_USER: dq_user
+
+          POSTGRES_PASSWORD: dq_pass
+
+          POSTGRES_DB: dq_db
+
+        ports: ["5432:5432"]
+
+        options: >-
+
+          --health-cmd "pg_isready -U dq_user -d dq_db"
+
+          --health-interval 5s --health-timeout 5s --health-retries 10
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+
+        with: { python-version: "3.11", cache: "pip" }
+
+      - run: pip install -r requirements.txt
+ 
+      - name: Download sample data
+
+        uses: actions/download-artifact@v4
+
+        with: { name: sample-data, path: data }
+ 
+      - name: Install postgresql-client
+
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+ 
+      - name: Initialize schema and load data
+
+        run: |
+
+          PGPASSWORD=dq_pass psql -h localhost -U dq_user -d dq_db -f db/init.sql
+
+          python3 scripts/load_data.py
+ 
+      - name: Run Behave BDD suite
+
+        run: |
+
+          mkdir -p reports/junit
+
+          behave features/ --junit --junit-directory reports/junit \
+
+            -f json -o reports/behave_results_ci.json -f pretty
+ 
+      - name: Upload BDD evidence
+
+        if: always()
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: bdd-results
+
+          path: |
+
+            reports/behave_results_ci.json
+
+            reports/junit/
+ 
+  # ---------------------------------------------------------------------
+
+  # Stage 3: Report & Gate — consolidates evidence from every stage above
+
+  # into one artifact, and fails the pipeline if any stage failed.
+
+  # ---------------------------------------------------------------------
+
+  report-and-gate:
+
+    needs: [dbt-tests, great-expectations-tests, bdd-tests]
+
+    if: always()
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+
+        with: { python-version: "3.11", cache: "pip" }
+
+      - run: pip install -r requirements.txt
+ 
+      - name: Download all evidence
+
+        uses: actions/download-artifact@v4
+
+        with:
+
+          path: artifacts
+ 
+      - name: Assemble consolidated reports folder
+
+        run: |
+
+          mkdir -p reports
+
+          cp -r artifacts/bdd-results/* reports/ 2>/dev/null || true
+
+          cp -r artifacts/dbt-results reports/dbt-results 2>/dev/null || true
+
+          cp -r artifacts/ge-results reports/ge-results 2>/dev/null || true
+ 
+      - name: Generate consolidated summary report
+
+        run: python3 scripts/generate_report.py reports/behave_results_ci.json
+ 
+      - name: Upload consolidated evidence
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: dq-evidence
+
+          path: reports/
+ 
+      - name: Fail the pipeline if any stage failed
+
+        if: needs.dbt-tests.result != 'success' || needs.great-expectations-tests.result != 'success' || needs.bdd-tests.result != 'success'
+
+        run: |
+
+          echo "One or more pipeline stages failed:"
+
+          echo "  dbt-tests: ${{ needs.dbt-tests.result }}"
+
+          echo "  great-expectations-tests: ${{ needs.great-expectations-tests.result }}"
+
+          echo "  bdd-tests: ${{ needs.bdd-tests.result }}"
+
+          echo "See the dq-evidence artifact for full details."
+
+          exit 1
