@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Data Quality Test Report - 2026-08-02 16:19:05</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background:#0f1117; color:#e8e8ea; margin:0; padding:2rem; }
+  h1 { font-size:1.6rem; margin-bottom:0.25rem; }
+  .meta { color:#9aa0a6; margin-bottom:1.5rem; }
+  .summary { display:flex; gap:1rem; margin-bottom:2rem; }
+  .card { background:#1a1d27; border-radius:10px; padding:1rem 1.5rem; flex:1; text-align:center; }
+  .card .num { font-size:2rem; font-weight:700; }
+  .pass { color:#3ddc84; }
+  .fail { color:#ff5c5c; }
+  .skip { color:#f4c542; }
+  .feature { background:#171a22; border-radius:10px; margin-bottom:1rem; padding:1rem 1.5rem; }
+  .feature h2 { font-size:1.1rem; margin:0 0 0.5rem 0; }
+  table { width:100%; border-collapse:collapse; }
+  td, th { text-align:left; padding:0.4rem 0.5rem; border-bottom:1px solid #2a2d38; font-size:0.92rem; }
+  .status-badge { padding:0.15rem 0.6rem; border-radius:6px; font-size:0.8rem; font-weight:600; }
+  .status-passed { background:#123d26; color:#3ddc84; }
+  .status-failed { background:#3d1212; color:#ff5c5c; }
+  .status-skipped { background:#3d3512; color:#f4c542; }
+</style>
+</head>
+<body>
+  <h1>Data Quality Test Report</h1>
+  <div class="meta">Generated 2026-08-02 16:19:05 &middot; Source: behave_results_20260802-161834.json</div>
+  <div class="summary">
+    <div class="card"><div class="num">9</div>Total Scenarios</div>
+    <div class="card"><div class="num pass">0</div>Passed</div>
+    <div class="card"><div class="num fail">9</div>Failed</div>
+    <div class="card"><div class="num skip">0</div>Skipped</div>
+  </div>
+  
+<div class="feature">
+  <h2>Customer table data quality</h2>
+  <table>
+    <tr><th>Scenario</th><th>Status</th><th>Duration (s)</th></tr>
+    <tr><td>Customer primary key is unique and never null</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.03</td></tr>
+<tr><td>Customer email addresses are well-formed</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.03</td></tr>
+<tr><td>Customer country values are within the supported market list</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.03</td></tr>
+<tr><td>dbt enforces customer table constraints</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.04</td></tr>
+  </table>
+</div>
+
+
+<div class="feature">
+  <h2>Order table data quality</h2>
+  <table>
+    <tr><th>Scenario</th><th>Status</th><th>Duration (s)</th></tr>
+    <tr><td>Order primary key is unique and never null</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.02</td></tr>
+<tr><td>Order amounts are never negative</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.02</td></tr>
+<tr><td>Order status is always a known lifecycle value</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.03</td></tr>
+<tr><td>Every order references a real customer</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.02</td></tr>
+<tr><td>dbt enforces order table constraints</td><td><span class="status-badge status-failed">FAILED</span></td><td>0.02</td></tr>
+  </table>
+</div>
+
+</body>
+</html>
