@@ -4,3 +4,8 @@
    *.pyc
    reports/
    great_expectations/uncommitted/
+   great_expectations/expectations/.ge_store_backend_id
+   reports/*.json
+   reports/junit/
+ 
+   
