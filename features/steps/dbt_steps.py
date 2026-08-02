@@ -8,7 +8,7 @@ from behave import when, then
 
 def _run_dbt_test(context, select):
     cmd = [
-        "dbt", "test",
+        "dbt", "--no-partial-parse", "build",
         "--select", select,
         "--project-dir", context.dbt_project_dir,
         "--profiles-dir", context.dbt_project_dir,
