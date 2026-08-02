@@ -7,9 +7,11 @@ from behave import when, then
 
 
 def _run_dbt_test(context, select):
+    # Always build the whole project (not --select) since cross-table tests
+    # (e.g. relationships) can reference models outside the selected scope,
+    # and this project is small enough that selective builds add no real value.
     cmd = [
         "dbt", "--no-partial-parse", "build",
-        "--select", select,
         "--project-dir", context.dbt_project_dir,
         "--profiles-dir", context.dbt_project_dir,
     ]
