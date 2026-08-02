@@ -152,7 +152,7 @@ jobs:
  
       - name: Run dbt tests
 
-        run: cd dbt_project && dbt test --profiles-dir .
+        run: cd dbt_project && dbt --no-partial-parse test --profiles-dir .
  
       - name: Upload dbt evidence
 
