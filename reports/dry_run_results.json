@@ -1,0 +1,275 @@
+{
+  "generated_at": "2026-08-02 10:20:40",
+  "results": [
+    {
+      "tool": "great_expectations",
+      "check": "expect_column_values_to_not_be_null (customer_id)",
+      "description": "Great Expectations: customer_id must never be null",
+      "success": true,
+      "element_count": 201,
+      "unexpected_count": 0,
+      "unexpected_pct": 0.0,
+      "sample_failing_rows": []
+    },
+    {
+      "tool": "great_expectations + dbt",
+      "check": "expect_column_values_to_be_unique / dbt unique (customer_id)",
+      "description": "customer_id must be unique across all rows",
+      "success": false,
+      "element_count": 201,
+      "unexpected_count": 1,
+      "unexpected_pct": 0.5,
+      "sample_failing_rows": [
+        {
+          "customer_id": "8",
+          "full_name": "Emma Hernandez",
+          "email": "emma.hernandez160@yahoo.com",
+          "country": "USA",
+          "signup_date": "2026-01-04"
+        }
+      ]
+    },
+    {
+      "tool": "great_expectations",
+      "check": "expect_column_values_to_not_be_null (full_name)",
+      "description": "Great Expectations: full_name must never be null/blank",
+      "success": false,
+      "element_count": 201,
+      "unexpected_count": 2,
+      "unexpected_pct": 1.0,
+      "sample_failing_rows": [
+        {
+          "customer_id": "119",
+          "full_name": "",
+          "email": "elizabeth.davis654@company.co",
+          "country": "UK",
+          "signup_date": "2023-12-23"
+        },
+        {
+          "customer_id": "157",
+          "full_name": "",
+          "email": "susan.chen783@outlook.com",
+          "country": "India",
+          "signup_date": "2024-03-03"
+        }
+      ]
+    },
+    {
+      "tool": "great_expectations + dbt",
+      "check": "expect_column_values_to_match_regex / dbt valid_email_format (email)",
+      "description": "email must match a valid email pattern (GE allows 3% tolerance)",
+      "success": false,
+      "element_count": 201,
+      "unexpected_count": 4,
+      "unexpected_pct": 1.99,
+      "sample_failing_rows": [
+        {
+          "customer_id": "68",
+          "full_name": "Wei Jackson",
+          "email": "wei.jackson679_at_mail.com",
+          "country": "India",
+          "signup_date": "2023-12-30"
+        },
+        {
+          "customer_id": "70",
+          "full_name": "Hiro Rodriguez",
+          "email": "hiro.rodriguez482_at_gmail.com",
+          "country": "India",
+          "signup_date": "2024-08-15"
+        },
+        {
+          "customer_id": "136",
+          "full_name": "Susan Sharma",
+          "email": "susan.sharma995_at_mail.com",
+          "country": "Canada",
+          "signup_date": "2025-11-17"
+        },
+        {
+          "customer_id": "159",
+          "full_name": "Wei Rossi",
+          "email": "wei.rossi447_at_gmail.com",
+          "country": "Canada",
+          "signup_date": "2024-03-05"
+        }
+      ]
+    },
+    {
+      "tool": "great_expectations",
+      "check": "expect_column_values_to_be_in_set (country)",
+      "description": "country must be one of the 6 supported markets",
+      "success": true,
+      "element_count": 201,
+      "unexpected_count": 0,
+      "unexpected_pct": 0.0,
+      "sample_failing_rows": []
+    },
+    {
+      "tool": "great_expectations",
+      "check": "expect_column_values_to_not_be_null (signup_date)",
+      "description": "signup_date must always be recorded",
+      "success": true,
+      "element_count": 201,
+      "unexpected_count": 0,
+      "unexpected_pct": 0.0,
+      "sample_failing_rows": []
+    },
+    {
+      "tool": "great_expectations",
+      "check": "expect_column_values_to_not_be_null (order_id)",
+      "description": "Great Expectations: order_id must never be null",
+      "success": true,
+      "element_count": 800,
+      "unexpected_count": 0,
+      "unexpected_pct": 0.0,
+      "sample_failing_rows": []
+    },
+    {
+      "tool": "great_expectations + dbt",
+      "check": "expect_column_values_to_be_unique / dbt unique (order_id)",
+      "description": "order_id must be unique across all rows",
+      "success": true,
+      "element_count": 800,
+      "unexpected_count": 0,
+      "unexpected_pct": 0.0,
+      "sample_failing_rows": []
+    },
+    {
+      "tool": "great_expectations + dbt",
+      "check": "expect_column_values_to_be_between / assert_no_negative_order_amounts (amount)",
+      "description": "amount must never be negative",
+      "success": false,
+      "element_count": 800,
+      "unexpected_count": 8,
+      "unexpected_pct": 1.0,
+      "sample_failing_rows": [
+        {
+          "order_id": "97",
+          "customer_id": "20",
+          "order_date": "2025-08-25",
+          "amount": "-29.01",
+          "status": "shipped"
+        },
+        {
+          "order_id": "295",
+          "customer_id": "194",
+          "order_date": "2026-04-27",
+          "amount": "-13.87",
+          "status": "shipped"
+        },
+        {
+          "order_id": "307",
+          "customer_id": "177",
+          "order_date": "2026-02-14",
+          "amount": "-121.08",
+          "status": "placed"
+        },
+        {
+          "order_id": "386",
+          "customer_id": "129",
+          "order_date": "2026-01-11",
+          "amount": "-185.11",
+          "status": "shipped"
+        },
+        {
+          "order_id": "435",
+          "customer_id": "21",
+          "order_date": "2025-08-28",
+          "amount": "-248.87",
+          "status": "returned"
+        }
+      ]
+    },
+    {
+      "tool": "great_expectations",
+      "check": "expect_column_values_to_be_in_set (status)",
+      "description": "status must be a known lifecycle value (and not null)",
+      "success": false,
+      "element_count": 800,
+      "unexpected_count": 8,
+      "unexpected_pct": 1.0,
+      "sample_failing_rows": [
+        {
+          "order_id": "99",
+          "customer_id": "164",
+          "order_date": "2025-09-21",
+          "amount": "456.81",
+          "status": ""
+        },
+        {
+          "order_id": "163",
+          "customer_id": "192",
+          "order_date": "2026-01-26",
+          "amount": "230.07",
+          "status": ""
+        },
+        {
+          "order_id": "193",
+          "customer_id": "27",
+          "order_date": "2025-08-22",
+          "amount": "362.78",
+          "status": ""
+        },
+        {
+          "order_id": "311",
+          "customer_id": "81",
+          "order_date": "2026-06-04",
+          "amount": "52.02",
+          "status": ""
+        },
+        {
+          "order_id": "329",
+          "customer_id": "184",
+          "order_date": "2025-12-14",
+          "amount": "61.44",
+          "status": ""
+        }
+      ]
+    },
+    {
+      "tool": "dbt",
+      "check": "dbt relationships (orders.customer_id -> customers.customer_id)",
+      "description": "Every order must reference a customer that actually exists",
+      "success": false,
+      "element_count": 800,
+      "unexpected_count": 15,
+      "unexpected_pct": 1.88,
+      "sample_failing_rows": [
+        {
+          "order_id": "183",
+          "customer_id": "520",
+          "order_date": "2026-07-13",
+          "amount": "461.68",
+          "status": "cancelled"
+        },
+        {
+          "order_id": "235",
+          "customer_id": "1018",
+          "order_date": "2025-10-13",
+          "amount": "198.84",
+          "status": "returned"
+        },
+        {
+          "order_id": "292",
+          "customer_id": "580",
+          "order_date": "2026-04-17",
+          "amount": "381.79",
+          "status": "shipped"
+        },
+        {
+          "order_id": "299",
+          "customer_id": "529",
+          "order_date": "2026-05-27",
+          "amount": "109.54",
+          "status": "returned"
+        },
+        {
+          "order_id": "367",
+          "customer_id": "1037",
+          "order_date": "2025-09-20",
+          "amount": "36.3",
+          "status": "placed"
+        }
+      ]
+    }
+  ]
+}

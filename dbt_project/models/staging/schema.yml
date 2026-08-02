@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned view of raw customer records."
+    columns:
+      - name: customer_id
+        description: "Primary key for a customer."
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: "Customer's full name."
+        tests:
+          - not_null
+      - name: email
+        description: "Customer's email address."
+        tests:
+          - not_null
+          - valid_email_format
+      - name: country
+        description: "Customer's country."
+        tests:
+          - accepted_values:
+              values: ['USA', 'India', 'UK', 'Germany', 'Canada', 'Australia']
+
+  - name: stg_orders
+    description: "Cleaned view of raw order records."
+    columns:
+      - name: order_id
+        description: "Primary key for an order."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to stg_customers.customer_id."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: amount
+        description: "Order amount; must never be negative."
+        tests:
+          - not_null
+      - name: status
+        description: "Order lifecycle status."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['placed', 'shipped', 'delivered', 'cancelled', 'returned']

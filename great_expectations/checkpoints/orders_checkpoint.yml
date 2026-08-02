@@ -1,0 +1,19 @@
+name: orders_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: "%Y%m%d-%H%M%S-orders"
+validations:
+  - batch_request:
+      datasource_name: dq_postgres_datasource
+      data_connector_name: default_configured_data_connector
+      data_asset_name: orders
+      data_connector_query:
+        index: -1
+    expectation_suite_name: orders_suite
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction

@@ -1,0 +1,57 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "customers_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": { "min_value": 1 },
+      "meta": { "notes": "Table should never be empty." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": { "column": "customer_id" },
+      "meta": { "notes": "Primary key must never be null." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": { "column": "customer_id" },
+      "meta": { "notes": "Primary key must be unique." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": { "column": "full_name" },
+      "meta": { "notes": "Customer name should always be captured." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": { "column": "email" },
+      "meta": { "notes": "Email is required for communication." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "email",
+        "regex": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+        "mostly": 0.97
+      },
+      "meta": { "notes": "Email must be well-formed; allow small tolerance for known bad records under investigation." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "country",
+        "value_set": ["USA", "India", "UK", "Germany", "Canada", "Australia"]
+      },
+      "meta": { "notes": "Country must be one of the supported markets." }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": { "column": "signup_date" },
+      "meta": { "notes": "Signup date should always be recorded." }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.19"
+  }
+}

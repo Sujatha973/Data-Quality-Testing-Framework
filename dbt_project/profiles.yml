@@ -1,0 +1,12 @@
+dq_project:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DQ_DB_HOST', 'localhost') }}"
+      port: "{{ env_var('DQ_DB_PORT', '5432') | as_number }}"
+      user: "{{ env_var('DQ_DB_USER', 'dq_user') }}"
+      pass: "{{ env_var('DQ_DB_PASSWORD', 'dq_pass') }}"
+      dbname: "{{ env_var('DQ_DB_NAME', 'dq_db') }}"
+      schema: analytics
+      threads: 4

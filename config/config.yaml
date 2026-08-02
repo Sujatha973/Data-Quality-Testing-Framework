@@ -1,0 +1,31 @@
+# Central configuration for the Data Quality Testing Framework
+# Overridable via environment variables of the same name (see scripts/setup.sh)
+
+database:
+  host: "${DQ_DB_HOST:-localhost}"
+  port: "${DQ_DB_PORT:-5432}"
+  name: "${DQ_DB_NAME:-dq_db}"
+  user: "${DQ_DB_USER:-dq_user}"
+  password: "${DQ_DB_PASSWORD:-dq_pass}"
+  schema: "raw"
+
+tables:
+  - name: customers
+    csv_path: "data/customers.csv"
+    primary_key: customer_id
+  - name: orders
+    csv_path: "data/orders.csv"
+    primary_key: order_id
+
+great_expectations:
+  project_root: "great_expectations"
+  datasource_name: "dq_postgres_datasource"
+
+dbt:
+  project_dir: "dbt_project"
+  profiles_dir: "dbt_project"
+  target: "dev"
+
+reporting:
+  output_dir: "reports"
+  formats: ["html", "json"]
