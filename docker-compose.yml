@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dq_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dq_user
+      POSTGRES_PASSWORD: dq_pass
+      POSTGRES_DB: dq_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - dq_pg_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dq_user -d dq_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dq_pg_data:
