@@ -100,10 +100,6 @@ This will:
 4. Load them into `raw.customers` / `raw.orders`
 5. Run `dbt debug` to confirm the dbt ↔ Postgres connection works
 
-📸 **Screenshot opportunity #1:** terminal output of `./scripts/setup.sh`
-showing "Postgres is ready", successful `pip install`, and `dbt debug`
-ending in "All checks passed!".
-
 ### Step 3 — Run the full BDD data quality suite
 ```bash
 source .venv/bin/activate
@@ -121,7 +117,7 @@ This runs `behave features/`, which in turn:
   `great_expectations/uncommitted/data_docs/local_site/index.html`
 - Builds a consolidated `reports/summary_report.html`
 
-📸 **Screenshot opportunity #2:** terminal output of `behave features/`
+ terminal output of `behave features/`
 showing scenario names with `PASSED`/`FAILED` in color, e.g.:
 ```
 Scenario: Customer primary key is unique and never null   # FAILED
@@ -132,7 +128,7 @@ Scenario: Every order references a real customer          # FAILED
 (These failures are **expected** — they're the seeded issues, and they
 prove the framework actually catches problems instead of always passing.)
 
-### Step 4 — Review the reports (this is where most screenshots come from)
+### Step 4 — Review the reports
 
 | Report | Path | What to screenshot |
 |---|---|---|
@@ -157,10 +153,6 @@ To demonstrate the full before/after story for a portfolio or demo:
 2. Reload: `python3 scripts/load_data.py`
 3. Re-run: `./scripts/run_all_tests.sh`
 
-📸 **Screenshot opportunity #3:** the same summary report, now all green —
-a clean before/after pair is the strongest evidence for a portfolio,
-resume project, or stakeholder demo.
-
 ### Step 6 — Push to GitHub and show CI passing
 ```bash
 git init
@@ -173,10 +165,6 @@ git push -u origin main
 The included `.github/workflows/data-quality.yml` spins up Postgres as a
 GitHub Actions service container and runs the identical suite on every
 push/PR, uploading `reports/` and GE Data Docs as build artifacts.
-
-📸 **Screenshot opportunity #4:** the GitHub Actions run page (green/red
-check), and the "Artifacts" section showing `dq-evidence.zip` available
-for download.
 
 ---
 
