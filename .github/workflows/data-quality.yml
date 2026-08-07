@@ -2,9 +2,9 @@ name: Data Quality Pipeline
 
 on:
   push:
-    branches: none
+    branches: main
   pull_request:
-    branches: none
+    branches: main
   workflow_dispatch: {}
 
 env:
